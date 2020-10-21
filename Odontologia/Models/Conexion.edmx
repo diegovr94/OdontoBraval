@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OdontologicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdProveedor" Type="int" />
+          <Property Name="IdEmpleado" Type="int" />
+          <Property Name="IdCliente" Type="int" />
+        </EntityType>
+        <EntityType Name="Boleta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="IdServicio" Type="int" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="nvarchar" MaxLength="50" />
+          <Property Name="Certificado" Type="nvarchar" MaxLength="50" />
+          <Property Name="Liquidacion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nivel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Familia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrdenPedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cantidad" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="IdEmpleado" Type="int" />
+          <Property Name="IdProveedor" Type="int" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="300" />
+          <Property Name="FechaVencimiento" Type="date" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrecioCompra" Type="int" />
+          <Property Name="PrecioVenta" Type="int" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="StockCritico" Type="int" />
+          <Property Name="IdProveedor" Type="int" />
+          <Property Name="IdFamilia" Type="int" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rubro" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RecepcionProducto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="IdEmpleado" Type="int" />
+          <Property Name="IdProveedor" Type="int" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="IdServicio" Type="int" />
+        </EntityType>
+        <EntityType Name="Servicios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdProducto" Type="int" />
+        </EntityType>
+        <Association Name="FK__Administr__IdCli__3651FAE7">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Administr__IdEmp__355DD6AE">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Administr__IdPro__3469B275">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Boleta__IdClient__30992191">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Boleta" Type="Self.Boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boleta">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Boleta__IdServic__318D45CA">
+          <End Role="Servicios" Type="Self.Servicios" Multiplicity="0..1" />
+          <End Role="Boleta" Type="Self.Boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boleta">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdEmp__2062B9C8">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenPedido">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdPro__1F6E958F">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenPedido">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdPro__2156DE01">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="OrdenPedido" Type="Self.OrdenPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenPedido">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__IdFami__1C9228E4">
+          <End Role="Familia" Type="Self.Familia" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdFamilia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__IdProv__1B9E04AB">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepcion__IdEmp__3A228BCB">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="RecepcionProducto" Type="Self.RecepcionProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecepcionProducto">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepcion__IdPro__392E6792">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="RecepcionProducto" Type="Self.RecepcionProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecepcionProducto">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepcion__IdPro__3B16B004">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="RecepcionProducto" Type="Self.RecepcionProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecepcionProducto">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdClien__2CC890AD">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdServi__2DBCB4E6">
+          <End Role="Servicios" Type="Self.Servicios" Multiplicity="0..1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servicios__IdPro__29EC2402">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="Servicios" Type="Self.Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicios">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_listar_recepciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="OdontologicaModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Boleta" EntityType="Self.Boleta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Familia" EntityType="Self.Familia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenPedido" EntityType="Self.OrdenPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecepcionProducto" EntityType="Self.RecepcionProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Administr__IdCli__3651FAE7" Association="Self.FK__Administr__IdCli__3651FAE7">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Administr__IdEmp__355DD6AE" Association="Self.FK__Administr__IdEmp__355DD6AE">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Administr__IdPro__3469B275" Association="Self.FK__Administr__IdPro__3469B275">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Boleta__IdClient__30992191" Association="Self.FK__Boleta__IdClient__30992191">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Boleta" EntitySet="Boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Boleta__IdServic__318D45CA" Association="Self.FK__Boleta__IdServic__318D45CA">
+            <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="Boleta" EntitySet="Boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdEmp__2062B9C8" Association="Self.FK__OrdenPedi__IdEmp__2062B9C8">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdPro__1F6E958F" Association="Self.FK__OrdenPedi__IdPro__1F6E958F">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdPro__2156DE01" Association="Self.FK__OrdenPedi__IdPro__2156DE01">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__IdFami__1C9228E4" Association="Self.FK__Producto__IdFami__1C9228E4">
+            <End Role="Familia" EntitySet="Familia" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__IdProv__1B9E04AB" Association="Self.FK__Producto__IdProv__1B9E04AB">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepcion__IdEmp__3A228BCB" Association="Self.FK__Recepcion__IdEmp__3A228BCB">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="RecepcionProducto" EntitySet="RecepcionProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepcion__IdPro__392E6792" Association="Self.FK__Recepcion__IdPro__392E6792">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="RecepcionProducto" EntitySet="RecepcionProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepcion__IdPro__3B16B004" Association="Self.FK__Recepcion__IdPro__3B16B004">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="RecepcionProducto" EntitySet="RecepcionProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdClien__2CC890AD" Association="Self.FK__Reserva__IdClien__2CC890AD">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdServi__2DBCB4E6" Association="Self.FK__Reserva__IdServi__2DBCB4E6">
+            <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servicios__IdPro__29EC2402" Association="Self.FK__Servicios__IdPro__29EC2402">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Servicios" EntitySet="Servicios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OdontologicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OdontologicaEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrador" EntityType="OdontologicaModel.Administrador" />
+          <EntitySet Name="Boleta" EntityType="OdontologicaModel.Boleta" />
+          <EntitySet Name="Cliente" EntityType="OdontologicaModel.Cliente" />
+          <EntitySet Name="Empleado" EntityType="OdontologicaModel.Empleado" />
+          <EntitySet Name="Familia" EntityType="OdontologicaModel.Familia" />
+          <EntitySet Name="OrdenPedido" EntityType="OdontologicaModel.OrdenPedido" />
+          <EntitySet Name="Producto" EntityType="OdontologicaModel.Producto" />
+          <EntitySet Name="Proveedor" EntityType="OdontologicaModel.Proveedor" />
+          <EntitySet Name="Reserva" EntityType="OdontologicaModel.Reserva" />
+          <AssociationSet Name="FK__Administr__IdCli__7C255952" Association="OdontologicaModel.FK__Administr__IdCli__7C255952">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Administr__IdEmp__7B313519" Association="OdontologicaModel.FK__Administr__IdEmp__7B313519">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Administr__IdPro__7A3D10E0" Association="OdontologicaModel.FK__Administr__IdPro__7A3D10E0">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Boleta__IdClient__766C7FFC" Association="OdontologicaModel.FK__Boleta__IdClient__766C7FFC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Boleta" EntitySet="Boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdClien__00EA0E6F" Association="OdontologicaModel.FK__Reserva__IdClien__00EA0E6F">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdEmp__66361833" Association="OdontologicaModel.FK__OrdenPedi__IdEmp__66361833">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__IdFami__6265874F" Association="OdontologicaModel.FK__Producto__IdFami__6265874F">
+            <End Role="Familia" EntitySet="Familia" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdPro__6541F3FA" Association="OdontologicaModel.FK__OrdenPedi__IdPro__6541F3FA">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenPedi__IdPro__672A3C6C" Association="OdontologicaModel.FK__OrdenPedi__IdPro__672A3C6C">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="OrdenPedido" EntitySet="OrdenPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__IdProv__61716316" Association="OdontologicaModel.FK__Producto__IdProv__61716316">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <EntitySet Name="RecepcionProducto" EntityType="OdontologicaModel.RecepcionProducto" />
+          <AssociationSet Name="FK__Recepcion__IdEmp__3A228BCB" Association="OdontologicaModel.FK__Recepcion__IdEmp__3A228BCB">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="RecepcionProducto" EntitySet="RecepcionProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepcion__IdPro__392E6792" Association="OdontologicaModel.FK__Recepcion__IdPro__392E6792">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="RecepcionProducto" EntitySet="RecepcionProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepcion__IdPro__3B16B004" Association="OdontologicaModel.FK__Recepcion__IdPro__3B16B004">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="RecepcionProducto" EntitySet="RecepcionProducto" />
+          </AssociationSet>
+          <FunctionImport Name="sp_listar_recepciones" ReturnType="Collection(OdontologicaModel.sp_listar_recepciones_Result)" />
+          <EntitySet Name="Servicios" EntityType="OdontologicaModel.Servicios" />
+          <AssociationSet Name="FK__Boleta__IdServic__318D45CA" Association="OdontologicaModel.FK__Boleta__IdServic__318D45CA">
+            <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="Boleta" EntitySet="Boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servicios__IdPro__29EC2402" Association="OdontologicaModel.FK__Servicios__IdPro__29EC2402">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Servicios" EntitySet="Servicios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdServi__2DBCB4E6" Association="OdontologicaModel.FK__Reserva__IdServi__2DBCB4E6">
+            <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="IdEmpleado" Type="Int32" />
+          <Property Name="IdCliente" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="OdontologicaModel.FK__Administr__IdCli__7C255952" FromRole="Administrador" ToRole="Cliente" />
+          <NavigationProperty Name="Empleado" Relationship="OdontologicaModel.FK__Administr__IdEmp__7B313519" FromRole="Administrador" ToRole="Empleado" />
+          <NavigationProperty Name="Proveedor" Relationship="OdontologicaModel.FK__Administr__IdPro__7A3D10E0" FromRole="Administrador" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Boleta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="IdServicio" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="OdontologicaModel.FK__Boleta__IdClient__766C7FFC" FromRole="Boleta" ToRole="Cliente" />
+          <NavigationProperty Name="Servicios" Relationship="OdontologicaModel.FK__Boleta__IdServic__318D45CA" FromRole="Boleta" ToRole="Servicios" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Certificado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Liquidacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Administrador" Relationship="OdontologicaModel.FK__Administr__IdCli__7C255952" FromRole="Cliente" ToRole="Administrador" />
+          <NavigationProperty Name="Boleta" Relationship="OdontologicaModel.FK__Boleta__IdClient__766C7FFC" FromRole="Cliente" ToRole="Boleta" />
+          <NavigationProperty Name="Reserva" Relationship="OdontologicaModel.FK__Reserva__IdClien__00EA0E6F" FromRole="Cliente" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Administrador" Relationship="OdontologicaModel.FK__Administr__IdEmp__7B313519" FromRole="Empleado" ToRole="Administrador" />
+          <NavigationProperty Name="OrdenPedido" Relationship="OdontologicaModel.FK__OrdenPedi__IdEmp__66361833" FromRole="Empleado" ToRole="OrdenPedido" />
+          <NavigationProperty Name="RecepcionProducto" Relationship="OdontologicaModel.FK__Recepcion__IdEmp__3A228BCB" FromRole="Empleado" ToRole="RecepcionProducto" />
+        </EntityType>
+        <EntityType Name="Familia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Producto" Relationship="OdontologicaModel.FK__Producto__IdFami__6265874F" FromRole="Familia" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="OrdenPedido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cantidad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdProducto" Type="Int32" />
+          <Property Name="IdEmpleado" Type="Int32" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <NavigationProperty Name="Empleado" Relationship="OdontologicaModel.FK__OrdenPedi__IdEmp__66361833" FromRole="OrdenPedido" ToRole="Empleado" />
+          <NavigationProperty Name="Producto" Relationship="OdontologicaModel.FK__OrdenPedi__IdPro__6541F3FA" FromRole="OrdenPedido" ToRole="Producto" />
+          <NavigationProperty Name="Proveedor" Relationship="OdontologicaModel.FK__OrdenPedi__IdPro__672A3C6C" FromRole="OrdenPedido" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="0" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrecioCompra" Type="Int32" />
+          <Property Name="PrecioVenta" Type="Int32" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="StockCritico" Type="Int32" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="IdFamilia" Type="Int32" />
+          <NavigationProperty Name="Familia" Relationship="OdontologicaModel.FK__Producto__IdFami__6265874F" FromRole="Producto" ToRole="Familia" />
+          <NavigationProperty Name="OrdenPedido" Relationship="OdontologicaModel.FK__OrdenPedi__IdPro__6541F3FA" FromRole="Producto" ToRole="OrdenPedido" />
+          <NavigationProperty Name="Proveedor" Relationship="OdontologicaModel.FK__Producto__IdProv__61716316" FromRole="Producto" ToRole="Proveedor" />
+          <NavigationProperty Name="RecepcionProducto" Relationship="OdontologicaModel.FK__Recepcion__IdPro__392E6792" FromRole="Producto" ToRole="RecepcionProducto" />
+          <NavigationProperty Name="Servicios" Relationship="OdontologicaModel.FK__Servicios__IdPro__29EC2402" FromRole="Producto" ToRole="Servicios" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rubro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Administrador" Relationship="OdontologicaModel.FK__Administr__IdPro__7A3D10E0" FromRole="Proveedor" ToRole="Administrador" />
+          <NavigationProperty Name="OrdenPedido" Relationship="OdontologicaModel.FK__OrdenPedi__IdPro__672A3C6C" FromRole="Proveedor" ToRole="OrdenPedido" />
+          <NavigationProperty Name="Producto" Relationship="OdontologicaModel.FK__Producto__IdProv__61716316" FromRole="Proveedor" ToRole="Producto" />
+          <NavigationProperty Name="RecepcionProducto" Relationship="OdontologicaModel.FK__Recepcion__IdPro__3B16B004" FromRole="Proveedor" ToRole="RecepcionProducto" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="IdServicio" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="OdontologicaModel.FK__Reserva__IdClien__00EA0E6F" FromRole="Reserva" ToRole="Cliente" />
+          <NavigationProperty Name="Servicios" Relationship="OdontologicaModel.FK__Reserva__IdServi__2DBCB4E6" FromRole="Reserva" ToRole="Servicios" />
+        </EntityType>
+        <Association Name="FK__Administr__IdCli__7C255952">
+          <End Type="OdontologicaModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Administrador" Role="Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Administr__IdEmp__7B313519">
+          <End Type="OdontologicaModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Administrador" Role="Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Administr__IdPro__7A3D10E0">
+          <End Type="OdontologicaModel.Proveedor" Role="Proveedor" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Administrador" Role="Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Boleta__IdClient__766C7FFC">
+          <End Type="OdontologicaModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Boleta" Role="Boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boleta">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdClien__00EA0E6F">
+          <End Type="OdontologicaModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdEmp__66361833">
+          <End Type="OdontologicaModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.OrdenPedido" Role="OrdenPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenPedido">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__IdFami__6265874F">
+          <End Type="OdontologicaModel.Familia" Role="Familia" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdFamilia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdPro__6541F3FA">
+          <End Type="OdontologicaModel.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.OrdenPedido" Role="OrdenPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenPedido">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenPedi__IdPro__672A3C6C">
+          <End Type="OdontologicaModel.Proveedor" Role="Proveedor" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.OrdenPedido" Role="OrdenPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenPedido">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__IdProv__61716316">
+          <End Type="OdontologicaModel.Proveedor" Role="Proveedor" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RecepcionProducto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="IdProducto" Type="Int32" />
+          <Property Name="IdEmpleado" Type="Int32" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Empleado" Relationship="OdontologicaModel.FK__Recepcion__IdEmp__3A228BCB" FromRole="RecepcionProducto" ToRole="Empleado" />
+          <NavigationProperty Name="Producto" Relationship="OdontologicaModel.FK__Recepcion__IdPro__392E6792" FromRole="RecepcionProducto" ToRole="Producto" />
+          <NavigationProperty Name="Proveedor" Relationship="OdontologicaModel.FK__Recepcion__IdPro__3B16B004" FromRole="RecepcionProducto" ToRole="Proveedor" />
+        </EntityType>
+        <Association Name="FK__Recepcion__IdEmp__3A228BCB">
+          <End Type="OdontologicaModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.RecepcionProducto" Role="RecepcionProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecepcionProducto">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepcion__IdPro__392E6792">
+          <End Type="OdontologicaModel.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.RecepcionProducto" Role="RecepcionProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecepcionProducto">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepcion__IdPro__3B16B004">
+          <End Type="OdontologicaModel.Proveedor" Role="Proveedor" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.RecepcionProducto" Role="RecepcionProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecepcionProducto">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_listar_recepciones_Result">
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Servicios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdProducto" Type="Int32" />
+          <NavigationProperty Name="Boleta" Relationship="OdontologicaModel.FK__Boleta__IdServic__318D45CA" FromRole="Servicios" ToRole="Boleta" />
+          <NavigationProperty Name="Producto" Relationship="OdontologicaModel.FK__Servicios__IdPro__29EC2402" FromRole="Servicios" ToRole="Producto" />
+          <NavigationProperty Name="Reserva" Relationship="OdontologicaModel.FK__Reserva__IdServi__2DBCB4E6" FromRole="Servicios" ToRole="Reserva" />
+        </EntityType>
+        <Association Name="FK__Boleta__IdServic__318D45CA">
+          <End Type="OdontologicaModel.Servicios" Role="Servicios" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Boleta" Role="Boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boleta">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servicios__IdPro__29EC2402">
+          <End Type="OdontologicaModel.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Servicios" Role="Servicios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicios">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdServi__2DBCB4E6">
+          <End Type="OdontologicaModel.Servicios" Role="Servicios" Multiplicity="0..1" />
+          <End Type="OdontologicaModel.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OdontologicaModelStoreContainer" CdmEntityContainer="OdontologicaEntities3">
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="OdontologicaModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boleta">
+            <EntityTypeMapping TypeName="OdontologicaModel.Boleta">
+              <MappingFragment StoreEntitySet="Boleta">
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="OdontologicaModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Liquidacion" ColumnName="Liquidacion" />
+                <ScalarProperty Name="Certificado" ColumnName="Certificado" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="OdontologicaModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Familia">
+            <EntityTypeMapping TypeName="OdontologicaModel.Familia">
+              <MappingFragment StoreEntitySet="Familia">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenPedido">
+            <EntityTypeMapping TypeName="OdontologicaModel.OrdenPedido">
+              <MappingFragment StoreEntitySet="OrdenPedido">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="OdontologicaModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="IdFamilia" ColumnName="IdFamilia" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="StockCritico" ColumnName="StockCritico" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="PrecioCompra" ColumnName="PrecioCompra" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="OdontologicaModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="OdontologicaModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecepcionProducto">
+            <EntityTypeMapping TypeName="OdontologicaModel.RecepcionProducto">
+              <MappingFragment StoreEntitySet="RecepcionProducto">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_listar_recepciones" FunctionName="OdontologicaModel.Store.sp_listar_recepciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OdontologicaModel.sp_listar_recepciones_Result">
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Servicios">
+            <EntityTypeMapping TypeName="OdontologicaModel.Servicios">
+              <MappingFragment StoreEntitySet="Servicios">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

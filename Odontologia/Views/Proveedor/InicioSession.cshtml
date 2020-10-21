@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "InicioSession";
+    var id = ViewBag.Id;
+}
+
+<h2>Bienvenido + @id</h2>
+
+
+
+<a href="@Url.Action("Index", "OrdenPedidoes")" class="elements">
+    <span>RecepcionProductoes</span>
+</a>
+
+<div class="md-form">
+    <input type="text" id="Codigo" name="Codigo" class="form-control" value="@id" onchange="Enviar()">
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-default" onclick="actualizar()" />
+    </div>
+</div>
+
+
+<script>
+    //function Enviar() {
+    //    debugger;
+    //    var text = document.getElementById("Cantidad");
+    //    text.value;
+    //    document.getElementById("#Codigo").value = text;
+
+    //}
+
+    function actualizar() {
+
+        debugger;
+        var serviceURL = '/OrdenPedidoes/Index';
+        var parametros = document.getElementById("Codigo").value;
+        $.ajax({
+            data: {
+                id: parametros,
+            },
+            url: serviceURL,
+            type: "POST",
+        });
+    }
+
+    //function actualizar() {
+    //    debugger;
+    //    var parametros = document.getElementById("Codigo").value;
+    //    debugger;
+    //    var serviceURL = '/RecepcionProductoes/Create';
+
+    //    $.ajax({
+    //        data: parametros,
+    //        url: serviceURL,
+    //        type: "POST",
+    //    });
+    //}
+
+</script>
+

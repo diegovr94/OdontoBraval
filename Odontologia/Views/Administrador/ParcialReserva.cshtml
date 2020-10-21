@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<Odontologia.Models.Reserva>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-lg-12" style=" overflow-y:scroll;     height:300px;     ">
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Servicios.Descripcion)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr style="background-color:white">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Servicios.Descripcion)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

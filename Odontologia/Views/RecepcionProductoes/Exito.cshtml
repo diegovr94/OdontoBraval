@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Exito";
+    var pord = ViewBag.IdProveedor;
+}
+
+<h2>Exito</h2>
+
+@*<a href="@Url.Action("Index", "OrdenPedidoes")" class="elements">
+        <span>Inicio</span>
+    </a>*@
+
+
+<div class="md-form">
+    <input type="text" id="Codigo" name="Codigo" class="form-control" value="@pord">
+    <label for="form1">@pord</label>
+</div>
+
+<button id="EnviarRecepcion" onclick="actualizar()">
+    Recepcionar Producto
+</button>
+
+
+<script>
+
+    function actualizar() {
+        debugger;
+        var can = document.getElementById("Codigo").value;
+        debugger;
+        var serviceURL = '/OrdenPedidoes/Index';
+
+        $.ajax({
+            data: {
+                id: $("#Codigo").val(),
+            },
+            url: serviceURL,
+            type: "POST",
+        });
+    }
+</script>
+

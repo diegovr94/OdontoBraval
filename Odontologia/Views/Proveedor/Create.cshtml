@@ -1,0 +1,280 @@
+﻿@model Odontologia.Models.Proveedor
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@*<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Proveedor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rubro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Rubro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rubro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contrasena, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contrasena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+
+
+
+
+
+<style>
+    .msg-none {
+        display: none !important;
+    }
+
+    .msg-block {
+        display: block !important;
+    }
+
+    body {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .body-content {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        height: calc(100vh) !important;
+        background: rgba(179,220,237,1);
+        background: -moz-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(69,191,231,1) 20%, rgba(41,184,229,1) 25%, rgba(34,92,186,1) 67%, rgba(28,19,153,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(179,220,237,1)), color-stop(20%, rgba(69,191,231,1)), color-stop(25%, rgba(41,184,229,1)), color-stop(67%, rgba(34,92,186,1)), color-stop(100%, rgba(28,19,153,1)));
+        background: -webkit-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(69,191,231,1) 20%, rgba(41,184,229,1) 25%, rgba(34,92,186,1) 67%, rgba(28,19,153,1) 100%);
+        background: -o-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(69,191,231,1) 20%, rgba(41,184,229,1) 25%, rgba(34,92,186,1) 67%, rgba(28,19,153,1) 100%);
+        background: -ms-linear-gradient(top, rgba(179,220,237,1) 0%, rgba(69,191,231,1) 20%, rgba(41,184,229,1) 25%, rgba(34,92,186,1) 67%, rgba(28,19,153,1) 100%);
+        background: linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(69,191,231,1) 20%, rgba(41,184,229,1) 25%, rgba(34,92,186,1) 67%, rgba(28,19,153,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#1c1399', GradientType=0 );
+    }
+
+    .myButton {
+        box-shadow: inset -1px 1px 0px 0px #ffffff;
+        background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+        background-color: #ffffff;
+        border-radius: 6px;
+        border: 1px solid #dcdcdc;
+        display: inline-block;
+        cursor: pointer;
+        color: #666666;
+        font-family: Arial;
+        font-size: 19px;
+        font-weight: bold;
+        padding: 17px 37px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #ffffff;
+    }
+
+        .myButton:hover {
+            background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+            background-color: #f6f6f6;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    label {
+        color: white !important
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row" style="    padding-top: 50px;    padding-left: 40px;    padding-right: 40px;">
+
+        <div class="row">
+            <div class="col-lg-2 text-center">
+                <a href="@Url.Action("Registros", "Login")"> <i class="glyphicon glyphicon-hand-left" style="font-size: 35px;     margin-top: 20px; margin-right:10px"></i>    Volver</a>
+
+            </div>
+            <div class="col-lg-8">
+                <h1 class="text-center" style="   margin-bottom: 50px; color:white">Registro Proveedor</h1>
+            </div>
+
+
+        </div>
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <label>Todos los campos con * son obligatorios</label>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nombre, "Nombre Proveedor *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Correo, "Apellido Proveedor *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Rubro, "Rubro *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Rubro, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Rubro, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Usuario, "Usuario *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Contrasena,"Contraseña *", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.PasswordFor(model => model.Contrasena, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Crear" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+                <div class="col-lg-6" style="    background-color: white;    padding: 10px;    border-radius: 20px;">
+                    <img src="~/Content/Img/proveedor.jpg" style="height: 425px;    border-radius: 20px;" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 px-0 my-4" style="margin: 0px 70px;">
+            @if (!string.IsNullOrEmpty(ViewBag.Message))
+            {
+                <div class="alert alert-danger">@ViewBag.Message</div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    window.addEventListener('load', msg, false);
+
+    debugger;
+    window.onload = msg();
+    var valor = document.getElementById("Valor").value;
+    function msg() {
+        if (valor > 0) {
+
+            $('#msg').removeClass('msg-none');
+            $('#msg').addClass('msg-block');
+
+
+        }
+    }
+
+
+    function rece() {
+
+        debugger;
+        var serviceURL = '/RecepcionProductoes/Index2';
+        var parametros = document.getElementById("Codigo").value;
+        $.ajax({
+            data: {
+                idEm: parametros,
+            },
+            url: serviceURL,
+            type: "POST",
+        });
+    }
+
+    function actualizar() {
+
+        debugger;
+        var serviceURL = '/OrdenPedidoes/Create';
+        var parametros = document.getElementById("Codigo").value;
+        $.ajax({
+            data: {
+                id: parametros,
+            },
+            url: serviceURL,
+            type: "POST",
+        });
+    }
+
+
+</script>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8a8178db887d43af80ce8b87e6e63ed1" Name="Diagram1" ZoomLevel="66">
+        <EntityTypeShape EntityType="OdontologicaModel.Administrador" Width="1.5" PointX="6" PointY="8.375" />
+        <EntityTypeShape EntityType="OdontologicaModel.Boleta" Width="1.5" PointX="10.5" PointY="4" />
+        <EntityTypeShape EntityType="OdontologicaModel.Cliente" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="OdontologicaModel.Empleado" Width="1.5" PointX="6" PointY="12.875" />
+        <EntityTypeShape EntityType="OdontologicaModel.Familia" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="OdontologicaModel.OrdenPedido" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="OdontologicaModel.Producto" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="OdontologicaModel.Proveedor" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="OdontologicaModel.Reserva" Width="1.5" PointX="7.5" PointY="1.875" />
+        <AssociationConnector Association="OdontologicaModel.FK__Administr__IdCli__7C255952" />
+        <AssociationConnector Association="OdontologicaModel.FK__Administr__IdEmp__7B313519" />
+        <AssociationConnector Association="OdontologicaModel.FK__Administr__IdPro__7A3D10E0" />
+        <AssociationConnector Association="OdontologicaModel.FK__Boleta__IdClient__766C7FFC" />
+        <AssociationConnector Association="OdontologicaModel.FK__Reserva__IdClien__00EA0E6F" />
+        <AssociationConnector Association="OdontologicaModel.FK__OrdenPedi__IdEmp__66361833" />
+        <AssociationConnector Association="OdontologicaModel.FK__Producto__IdFami__6265874F" />
+        <AssociationConnector Association="OdontologicaModel.FK__OrdenPedi__IdPro__6541F3FA" />
+        <AssociationConnector Association="OdontologicaModel.FK__OrdenPedi__IdPro__672A3C6C" />
+        <AssociationConnector Association="OdontologicaModel.FK__Producto__IdProv__61716316" />
+        <EntityTypeShape EntityType="OdontologicaModel.RecepcionProducto" Width="1.5" PointX="8.25" PointY="8" />
+        <AssociationConnector Association="OdontologicaModel.FK__Recepcion__IdEmp__3A228BCB" />
+        <AssociationConnector Association="OdontologicaModel.FK__Recepcion__IdPro__392E6792" />
+        <AssociationConnector Association="OdontologicaModel.FK__Recepcion__IdPro__3B16B004" />
+        <EntityTypeShape EntityType="OdontologicaModel.Servicios" Width="1.5" PointX="5.25" PointY="3.875" />
+        <AssociationConnector Association="OdontologicaModel.FK__Boleta__IdServic__318D45CA" />
+        <AssociationConnector Association="OdontologicaModel.FK__Servicios__IdPro__29EC2402" />
+        <AssociationConnector Association="OdontologicaModel.FK__Reserva__IdServi__2DBCB4E6" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

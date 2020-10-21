@@ -1,0 +1,141 @@
+﻿
+<style>
+
+
+    .myButton {
+        box-shadow: inset -1px 1px 0px 0px #ffffff;
+        background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+        background-color: #ffffff;
+        border-radius: 6px;
+        border: 1px solid #dcdcdc;
+        display: inline-block;
+        cursor: pointer;
+        color: #666666;
+        font-family: Arial;
+        font-size: 19px;
+        font-weight: bold;
+        padding: 17px 37px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #ffffff;
+    }
+
+        .myButton:hover {
+            background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+            background-color: #f6f6f6;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+</style>
+
+
+
+
+<style>
+    .msg-none {
+        display: none !important;
+    }
+
+    .msg-block {
+        display: block !important;
+    }
+
+    body {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+    .body-content1 {
+        background: #494ffd;
+        background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);
+        background: linear-gradient(to bottom, #1cdafa, #050f40);
+        float: left;
+        width: 100%;
+        padding: 100px 0;
+        min-height: 100%;
+        min-width: 1024px;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    
+    .myButton {
+        box-shadow: 3px 4px 0px 0px #91b8b3;
+        background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+        background-color: #768d87;
+        border-radius: 15px;
+        border: 1px solid #566963;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 17px;
+        padding: 7px 25px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #2b665e;
+    }
+
+        .myButton:hover {
+            background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+            background-color: #6c7c7c;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    label {
+        color: white !important
+    }
+</style>    
+<div class="row body-content1">
+    <div class="col-lg-4">
+        <label>Ordenes de Pedido</label>
+        @{
+            Html.RenderAction("ParcialOrden");
+        }
+    </div>
+    <div class="col-lg-4">
+        <label>Recepcion de Producto</label>
+        @{
+            Html.RenderAction("ParcialRecepcion");
+        }
+    </div>
+    <div class="col-lg-4">
+        <label>Reservas</label>
+        @{
+            Html.RenderAction("ParcialReserva");
+        }
+    </div>
+
+
+    <div class="">
+        <div class="col-lg-12">
+            <div class="row">
+
+
+                <div class="col-lg-4 text-center" style="    margin-top: 50px;    margin-bottom: 50px;">
+                    <a href="@Url.Action("Create", "Familias")" onclick="actualizar()" class="myButton">Familias Producto</a>
+                </div>
+
+                <div class="col-lg-4 text-center" style="    margin-top: 50px;    margin-bottom: 50px;">
+                    <a href="@Url.Action("Create", "Servicios")" onclick="rece()" class="myButton">Servicios</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
